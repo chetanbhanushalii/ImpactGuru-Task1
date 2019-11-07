@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TASK 1</title>
+</head>
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+    .side{
+        display: inline-block;
+        width: 20%;
+    }
+    input[type=number]{
+        padding: 5px;
+    }
+</style>
+<body>
+   <div class="content">
+       <form>
+            <h1><legend>Currency converter (INR - USD)</legend></h1>
+            <div>
+                <label for="rate">Enter Rate</label>
+                <input type="number" id="rate" value="70" onchange()="rateFunc()">
+            </div>
+            <br><br>
+            <div class="side">
+                <label for="inr">INR</label>
+                <input type="number" id="inr" placeholder="">
+            </div>
+    
+            <div class="side">
+                <label for="usd">USD</label>
+                <input type="number" id="usd" placeholder="">
+            </div>
+       </form>
+   </div>
+    <script src="jquery.js"></script>
+   
+    <script>
+      $(document).ready(function(){
+          var rate = $("#rate").val();
+
+        $("#rate").keyup(function(){
+            rate = $(this).val();           
+        });
+
+        $("#inr").keyup(function(){
+            var inr = $(this).val();
+            var amt=  Number(inr) / Number(rate) ;
+            $("#usd").val(amt);
+        });
+
+        $("#usd").keyup(function(){
+            var usd = $(this).val();     
+            var amt1=  Number(usd) * Number(rate) ;           
+            $("#inr").val(amt1);       
+        });
+
+        $("#rate").change(function(){
+            var usd = $("#usd").val();     
+            var amt1=  Number(usd) * Number(rate) ;           
+            $("#inr").val(amt1);  
+        })
+      })
+    </script>  
+</body>
+</html>
